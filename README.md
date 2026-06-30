@@ -1,109 +1,173 @@
-# Qwen2.5-0.5B QLoRA Fine-Tuning on Dolly Dataset 🚀
+# 🚀 Qwen2.5-0.5B QLoRA Fine-Tuning on Databricks Dolly-15K
 
-This project demonstrates fine-tuning of **Qwen2.5-0.5B-Instruct** using
-**QLoRA (Quantized Low-Rank Adaptation)** on the **Databricks Dolly-15k
-instruction dataset**.
+Fine-tuning **Qwen2.5-0.5B-Instruct** using **QLoRA (Quantized Low-Rank Adaptation)** on the **Databricks Dolly-15K** instruction dataset with **PEFT**, **TRL**, and **Hugging Face Transformers**.
 
-## Project Overview
+---
 
-In this project:
+## 📌 Project Overview
 
--   Loaded Qwen2.5-0.5B-Instruct base model
--   Applied 4-bit NF4 quantization using BitsAndBytes
--   Fine-tuned using QLoRA + LoRA adapters
--   Tested inference performance
--   Merged LoRA adapter with the base model
--   Uploaded PEFT adapter and merged model to Hugging Face
+This project demonstrates an end-to-end workflow for parameter-efficient fine-tuning of an open-source Large Language Model (LLM).
 
-## Tech Stack
+The workflow includes:
 
--   Python
--   PyTorch
--   Hugging Face Transformers
--   Hugging Face Datasets
--   PEFT
--   TRL
--   BitsAndBytes
+- Loading the Qwen2.5-0.5B-Instruct base model
+- 4-bit NF4 quantization using BitsAndBytes
+- QLoRA fine-tuning with PEFT
+- Instruction tuning on the Dolly-15K dataset
+- Model inference and evaluation
+- Merging LoRA adapters with the base model
+- Publishing both the PEFT adapter and merged model on Hugging Face
 
-## Dataset
+---
 
-Dataset: Databricks Dolly-15k
+## 🛠️ Tech Stack
 
-Used for instruction tuning tasks such as: - Question answering - Text
-generation - Summarization - Reasoning
+- Python
+- PyTorch
+- Hugging Face Transformers
+- Hugging Face Datasets
+- PEFT
+- TRL
+- BitsAndBytes
+- QLoRA
 
-## Base Model
+---
 
-Qwen2.5-0.5B-Instruct
+## 📂 Dataset
 
-Hugging Face: https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct
+**Databricks Dolly-15K**
 
-## Training Details
+The dataset contains instruction-following examples including:
 
-GPU: Tesla T4
+- Question Answering
+- Summarization
+- Text Generation
+- Classification
+- Brainstorming
+- Information Extraction
 
-QLoRA Configuration:
+Dataset:
+https://huggingface.co/datasets/databricks/databricks-dolly-15k
 
--   4-bit Quantization
--   NF4 quantization type
--   Double Quantization enabled
--   Compute dtype: float16
+---
 
-LoRA:
+## 🤖 Base Model
 
--   r = 16
--   lora_alpha = 32
--   lora_dropout = 0.05
--   Target modules:
-    -   q_proj
-    -   k_proj
-    -   v_proj
-    -   o_proj
+**Qwen2.5-0.5B-Instruct**
 
-Training:
+https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct
 
--   Epochs: 3
--   Batch size: 4
--   Gradient accumulation steps: 4
--   Learning rate: 2e-4
--   Optimizer: paged_adamw_8bit
+---
 
-## Model Testing
+## ⚙️ Training Configuration
 
-Tested on:
+### Quantization
 
-✅ Question Answering\
-✅ Python Code Generation\
-✅ Email Writing\
-✅ Reasoning Tasks
+- 4-bit NF4 Quantization
+- Double Quantization Enabled
+- Compute dtype: float16
 
-## Hugging Face Models
+### LoRA Configuration
 
-LoRA Adapter: https://huggingface.co/Shivanisaini/qwen-dolly-qlora
+| Parameter | Value |
+|-----------|------:|
+| r | 16 |
+| LoRA Alpha | 32 |
+| LoRA Dropout | 0.05 |
+| Bias | None |
+| Task Type | Causal LM |
 
-Merged Model: https://huggingface.co/Shivanisaini/qwen-dolly-merged
+### Target Modules
 
-## Project Structure
+- q_proj
+- k_proj
+- v_proj
+- o_proj
 
-Qwen-QLoRA-Dolly-FineTuning/
+---
 
--   Qwen_QLoRA_Dolly.ipynb
--   README.md
--   requirements.txt
+## 🏋️ Training Setup
 
-## Installation
+| Parameter | Value |
+|-----------|------:|
+| GPU | Tesla T4 |
+| Epochs | 2 |
+| Batch Size | 4 |
+| Gradient Accumulation | 4 |
+| Learning Rate | 2e-4 |
+| Optimizer | paged_adamw_8bit |
+| Scheduler | Cosine |
 
-Install dependencies:
+---
 
+## 🧪 Inference Examples
+
+The fine-tuned model was tested on multiple prompts including:
+
+- Machine Learning concepts
+- Python code generation
+- Professional email writing
+- Text summarization
+- Mathematical reasoning
+
+---
+
+## 🤗 Hugging Face Models
+
+### LoRA Adapter
+
+https://huggingface.co/Shivanisaini/qwen-dolly-qlora
+
+### Merged Model
+
+https://huggingface.co/Shivanisaini/qwen-dolly-merged
+
+---
+
+## 🚀 Installation
+
+```bash
 pip install -r requirements.txt
+```
 
-## Future Improvements
+---
 
--   Train on larger datasets
--   Evaluate on benchmarks
--   Deploy as an API
--   Experiment with larger models
+## 📁 Project Structure
 
-## Author
+```text
+Qwen-QLoRA-Dolly-FineTuning
+│
+├── Qwen2_5_Dolly_QLoRA_FineTuning.ipynb
+├── README.md
+├── requirements.txt
+```
 
-Shivani Saini
+---
+
+## 🎯 Learning Outcomes
+
+Through this project, I gained hands-on experience with:
+
+- Large Language Model (LLM) Fine-Tuning
+- Parameter-Efficient Fine-Tuning (PEFT)
+- QLoRA
+- 4-bit Quantization
+- Hugging Face Transformers
+- LoRA Adapter Merging
+- Hugging Face Model Publishing
+
+---
+
+## 👩‍💻 Author
+
+**Shivani Saini**
+
+GitHub:
+https://github.com/Shivanisaini432
+
+Hugging Face:
+https://huggingface.co/Shivanisaini
+
+---
+
+## ⭐ If you found this project helpful, consider giving it a star!
